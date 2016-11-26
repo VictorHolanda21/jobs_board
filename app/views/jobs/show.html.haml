@@ -1,15 +1,29 @@
-%h1= @job.title
-%p 
-	%strong By: 
-	=@job.user.email
-%p 
-	%strong Company: 
-	= link_to @job.company, @job.url
+.col-md-4
+	%h1= @job.title
+	%p 
+		%strong By: 
+		=@job.user.email
+	%p 
+		%strong Company: 
+		= link_to @job.company, @job.url
 
-%p= @job.description
+	%p= @job.description
 
-=link_to "Home", root_path, class: "btn btn-primary"
+	=link_to "Home", root_path, class: "btn btn-primary"
 
-- if current_user == @job.user
-	=link_to "Edit", edit_job_path(@job), class: "btn btn-default"
-	=link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+	- if current_user == @job.user
+		=link_to "Edit", edit_job_path(@job), class: "btn btn-default"
+		=link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+.col-md-4
+	%h1 Reviews
+	- if user_signed_in? & !@reviews.blank?
+		=link_to "Write a Review", new_job_review_path(@job), class: "btn btn-default"
+
+	-if @reviews.blank?
+		%h3 No reviews just yet, would you like to add the first?
+		= link_to "Write Review", new_job_review_path(@job), class: "btn btn-default"
+	-else
+		- @job.reviews.each do |review|
+			.reviews
+				%p=review.rating
+				%p=review.comment

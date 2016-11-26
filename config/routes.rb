@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :reviews
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
 
-  resources :jobs
+  resources :jobs do
+  	resources :reviews, except: [:index, :show]
+  end
+
+
   root 'jobs#index'
 end

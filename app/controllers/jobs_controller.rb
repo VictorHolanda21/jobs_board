@@ -13,6 +13,7 @@ class JobsController < ApplicationController
 	end
 
 	def show
+		@reviews = Review.where(job_id: @job.id).order("created_at DESC")
 	end
 
 	def new
