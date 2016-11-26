@@ -2,6 +2,6 @@
 %p= @job.description
 %p= @job.company
 
-=link_to "Home", root_path
-=link_to "Edit", edit_job_path(@job)
-=link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}
+=link_to "Home", root_path, class: "btn btn-primary"
+=link_to "Edit", edit_job_path(@job), class: "btn btn-default"
+=link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"

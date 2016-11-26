@@ -1,9 +1,7 @@
-%h1 Jobs list
-
-=link_to "New Job", new_job_path
+%h1 Jobs list - #{@categories_list} Category
 
 - @jobs.each do |job|
 	%h2= link_to job.title, job_path(job)
 	%p= job.category.name
 	%p= job.description
-	= link_to :edit, edit_job_path(job)
+	= link_to "Edit", edit_job_path(job), class: "btn btn-default"

@@ -5,9 +5,11 @@ class JobsController < ApplicationController
 	def index
 		if params[:category].blank?
 			@jobs = Job.all.order("created_at DESC")
+			@categories_list = "All"
 		else
-			@category_id = Category.find_by(name: params[:category]).id
-			@jobs = Job.where(category_id: @category_id).order("created_at DESC")
+			@category = Category.find_by(name: params[:category])
+			@jobs = Job.where(category_id: @category.id).order("created_at DESC")
+			@categories_list = @category.name
 		end
 	end
 
