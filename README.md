@@ -1,24 +1,29 @@
-# README
+# Introdução
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Esta aplicação trata-se um mini site de divulgação de empregos.
 
-Things you may want to cover:
+# Objetivo
 
-* Ruby version
+Adquirir e desenvolver os conhecimentos em Ruby on Rails.
 
-* System dependencies
+# Algumas gems utilizadas
 
-* Configuration
+* rails 5
+* devise
+* simple_form
+* haml
+* bootstrap-sass
 
-* Database creation
+# História de usuário
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[x] Usuário pode listar todos as vagas na página inicial sem estar logado
+[x] Usuário pode listar vagas por categoria
+[x] Usuário pode visualizar mais detalhes da vaga sem estar logado
+[x] Usuário pode se cadastrar
+[x] Usuário pode logar no sistema
+[x] Usuário logado pode criar uma nova vaga
+[x] Usuário logado pode editar uma vaga existente
+[x] Usuário logado pode deletar uma vaga existente
+[x] Usuário logado pode criar uma avaliação de uma vaga existente
+[x] Usuário logado pode editar sua avaliação de uma vaga existente
+[x] Usuário logado pode deletar sua avaliação de uma vaga existente
