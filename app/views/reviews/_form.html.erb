@@ -1,8 +1,9 @@
 <%= simple_form_for([@job, @review]) do |f| %>
   <%= f.error_notification %>
 
+  <div id="star-rating" data-score="<%= review.rating%>"></div>
+
   <div class="form-inputs">
-    <%= f.input :rating %>
     <%= f.input :comment %>
   </div>
 
@@ -10,3 +11,14 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#star-rating').raty({
+			path: '/assets/',
+			scoreName: 'review[rating]'
+		});
+	});
+
+</script>

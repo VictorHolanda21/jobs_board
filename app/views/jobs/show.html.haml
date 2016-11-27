@@ -1,8 +1,13 @@
 .col-md-4
 	%h1= @job.title
+	%div.star-rating{"data-score" => @avg_review }
+	%em  #{@reviews.length} reviews
 	%p 
 		%strong By: 
 		=@job.user.email
+	%p
+		%strong Category:
+		=@job.category.name
 	%p 
 		%strong Company: 
 		= link_to @job.company, @job.url
@@ -16,14 +21,31 @@
 		=link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
 .col-md-4
 	%h1 Reviews
-	- if user_signed_in? & !@reviews.blank?
+	- if !@reviews.blank?
 		=link_to "Write a Review", new_job_review_path(@job), class: "btn btn-default"
+
 
 	-if @reviews.blank?
 		%h3 No reviews just yet, would you like to add the first?
 		= link_to "Write Review", new_job_review_path(@job), class: "btn btn-default"
 	-else
-		- @job.reviews.each do |review|
+		- @job.reviews.reverse.each do |review|
 			.reviews
-				%p=review.rating
-				%p=review.comment
+				%div.star-rating{"data-score" => review.rating }
+				%p By: #{review.user.email}
+				%p= review.comment
+				- if user_signed_in?
+					- if review.user.id == current_user.id
+						%p #{link_to "Edit review", edit_job_review_path(@job), class: "btn btn-default"} #{link_to "Delete review", job_review_path(@job, review), method: :delete, class: "btn btn-danger"}
+				%hr
+
+:javascript
+	$(document).ready(function(){
+		$('.star-rating').raty({
+			path: '/assets/',
+			readOnly: true,
+			score: function(){
+				return $(this).attr('data-score');
+			}
+		});
+	});
